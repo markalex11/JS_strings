@@ -58,3 +58,43 @@ function wave(str){
   return result;
 }
 
+
+
+//валидотор Айпи адресса
+function isValidIP(str) {
+  if((/[a-zA-Z]|\s/).test(str) || str.split('.').some(el=> el.length>1&&el.startsWith('0'))){
+    return false
+  }
+  return str.split('.').every(el => Number(el)>=0 && Number(el)<=255) && str.split('.').filter(el=>el != '').length == 4
+}
+
+// разделить прямоугольник по формуле 
+function sqInRect(lng, wdth){
+  const  result = [];
+  if(lng == wdth) {
+    return null
+  }
+  while(lng > 0 && wdth > 0){
+    result.push(lng > wdth ? wdth : lng);
+    lng > wdth ? lng -= wdth : wdth -= lng;
+  }
+  return result
+}
+
+// и так все понятно
+String.prototype.camelCase=function(){
+  if(this == ''){
+    return ''
+  }
+  return this.trim().split(' ').map(el=> el[0].toUpperCase() + el.substring(1)).reduce((acc,el)=>acc+el,'')
+}
+
+
+// сумма всех цыфр от нуля до н
+function f(n){
+  if(typeof n != 'number' || !Number.isInteger(n) || n<1 ){
+    return false
+  }
+ return (n*(n+1))/2
+};
+
