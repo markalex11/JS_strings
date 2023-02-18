@@ -98,3 +98,21 @@ function f(n){
  return (n*(n+1))/2
 };
 
+//найти букву моя версия 
+function findMissingLetter(array){
+  let res;
+  
+  const a = array.map(el=>el.toLowerCase())
+              .sort()
+              .map(el=>el.charCodeAt());
+  
+  for(let i = a[0]; i < a[a.length-1]; i++){
+    if(!a.includes(i)){
+      res = i
+    }
+  }
+  if(array[0] == array[0].toUpperCase()){
+    return String.fromCharCode(res).toUpperCase()
+  }
+     return String.fromCharCode(res)      
+}
