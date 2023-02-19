@@ -116,3 +116,330 @@ function findMissingLetter(array){
   }
      return String.fromCharCode(res)      
 }
+
+
+function duplicateEncode(word){
+  word = word.toLowerCase().split('');
+  const store = word.reduce((acc, cur) => {
+    !acc[cur] ? acc[cur] = 1 : acc[cur]++;
+    return acc;
+  }, {});
+  for(let key in store){
+    if(store[key] > 1){
+      delete store[key]
+    }
+  }
+  
+  for(let i = 0; i < word.length; i++){
+    if(store.hasOwnProperty(word[i])){
+      word[i] = '(';
+    } else {
+      word[i] = ')';
+    }
+  }
+  
+  
+   return word.join('');
+}
+
+function getCount(str) {
+  const myRegex = /[aeiou]/gi;
+   
+  return str.split('').filter(el => el.match(myRegex)).length
+  
+  
+}
+
+function removeChar(str){
+  if(str.length < 3){
+    return ''
+  }else{
+    return str.slice(1,-1)
+  }
+  
+};
+
+function isPangram(string){
+  string = string.toLowerCase().match(/[a-z]/g);
+  return [...new Set(string)].length == 26
+}
+
+
+function encrypt(text, n) {
+  if(n == 0){
+    return text;
+  }else if(text == ''){
+    return '';
+  }else if(!text){
+    return null;
+  }
+  
+  
+  while(n > 0) {
+  const result = [];
+  text = text.split('');
+  for(let i = 1; i < text.length; i++){
+    result.push(text[i]);
+    i++;
+  }
+  for(let i = 0; i < text.length; i++){
+    result.push(text[i]);
+    i++;
+  }
+  n--;
+  text = result.join('');
+    
+    }
+  return text
+}
+
+
+
+function decrypt(encryptedText, n) {
+  if(n == 0){
+    return encryptedText;
+  }else if(encryptedText == ''){
+    return '';
+  }else if(!encryptedText){
+    return null;
+  }
+  
+  
+  while(n > 0){
+    let first = encryptedText.slice(0,Math.floor(encryptedText.length/2)).split('');
+    let second = encryptedText.slice(Math.floor(encryptedText.length/2)).split('');
+    for(let i = 0; i < encryptedText.length; i+=2){
+      first.splice(i,0,second.shift());
+    }
+    n--;
+    encryptedText = first.join('');
+  }
+  return encryptedText
+}
+
+
+function removeUrlAnchor(url){
+  if(url.indexOf('#') == -1){
+    return url
+  } else {
+  return url.slice(0,url.indexOf('#'))
+    }
+}
+
+function sortByLength (array) {
+  return array.sort((a,b)=> a.length - b.length,0)
+};
+
+
+const rps = (p1, p2) => {
+  if(p1 == p2){
+    return "Draw!"
+  }else if(p1 == 'rock'&& p2 == 'scissors'||p1 == 'scissors'&& p2 == 'paper'||p1 == 'paper'&&p2 == 'rock'){
+    return "Player 1 won!";
+  }else{
+    return "Player 2 won!"
+  }
+  
+ };
+
+ function shortcut (string) {
+  return string.replace(/[aeiou]+/g,'')
+}
+
+function bmi(weight, height) {
+  const myBmi = weight/(height*height);
+  if(myBmi <= 18.5){
+  return "Underweight";
+    }else if(myBmi<=25.0){
+      return "Normal";
+    }else if(myBmi<=30.0){
+      return  "Overweight";
+    }else{
+      return "Obese"
+    }
+  
+}
+
+var isAnagram = function(test, original) {
+  test = test.toLowerCase().split('').sort().join('');
+  original = original.toLowerCase().split('').sort().join('');
+  return original == test
+};
+
+function gimme (triplet) {
+  const myTr = triplet.slice();
+  myTr.sort((a,b)=>a-b,0);
+  return triplet.indexOf(myTr[1])
+}
+
+function howMuchILoveYou(nbPetals) {
+  const phrase = {1:"I love you",2:"a little",3:"a lot",4:"passionately",5:"madly",6:"not at all"}
+    while(nbPetals > 6){
+      nbPetals -= 6;
+    }
+  return phrase[nbPetals]
+}
+
+
+function correct(string){
+  string = string.split('').map((el)=> el.replace('0','O')).map((el)=> el.replace('5','S')).map((el)=> el.replace('1','I')).join('');
+   return string 
+ }
+
+ function count (string) {  
+  string = string.split('').sort();
+  const store = string.reduce((acc, cur) => {
+    !acc[cur] ? acc[cur] = 1 : acc[cur]++;
+    return acc;
+  }, {})
+   return store;
+}
+
+function wave(str){
+  const result = [];
+  for(let i = 0; i < str.length; i++) {
+    let letter = str[i];
+    if (letter === " ") {
+      continue;
+    } else {
+      result.push(str.slice(0, i) + letter.toUpperCase() + str.slice(i + 1))
+    } 
+  }
+  return result;
+}
+
+String.prototype.toAlternatingCase = function () {
+  const myStr = this.split('');
+  const upp = /[A-Z]/;
+  const low = /[a-z]/;
+  for(let i = 0; i < myStr.length; i++){
+    if(upp.test(myStr[i])){
+       myStr[i] = myStr[i].toLowerCase();
+       continue
+       }
+    if(low.test(myStr[i])){
+       myStr[i] = myStr[i].toUpperCase();
+    }
+  }
+  return myStr.join('')
+}
+
+function isPalindrome(x) {
+  let y = x;
+  return y.toLowerCase().split("").reverse().join("") == x.toLowerCase();
+}
+
+function incrementString (strng) {
+  const base = strng.slice(0, -1);
+  const last = strng.slice(-1).match(/[0-9]/);
+  return last === null
+    ? strng + "1"
+    : last != 9
+    ? base + (+last + 1)
+    : incrementString(base) + "0";
+  
+}
+
+function solution(str, ending){
+  str = str.split('').reverse().join('');        
+  ending = ending.split('').reverse().join('');   
+  let myStr = str.slice(0,ending.length);
+  return myStr == ending
+}
+
+function isIsogram(str){
+  
+  str = str.toLowerCase();
+  const copy = [...str];
+  
+  return [...new Set(copy)].join('') == str
+}
+
+
+function solution(string) {
+  const replace = {A:" A",B:" B",C:" C",D:" D",E:" E",F:" F",G:" G",H:" H",I:" I",J:" J",K:" K",L:" L",
+                  M:" M",N:" N",O:" O",P:" P",Q:" Q",R:" R",S:" S",T:" T",U:" U",V:" V",W:" W",X:" X",Y:" Y",Z:" Z"}
+  string = string.split("");
+  for(let key in replace){
+    for(let i = 0; i < string.length; i++){
+      if(string[i] === key){
+        string[i] = replace[key];
+      }
+    }
+  }
+  return string.join("")
+}
+
+
+function countSmileys(arr) {
+  if(arr === []){
+    return 0;
+  } else {
+    let result = 0;
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] === ':D'|| arr[i] === ':~)'|| arr[i] === ';~D'||arr[i] === ':)'||arr[i] === ';-D'||arr[i] === ':-D'||arr[i] === ';)'||arr[i] === ':-)'||arr[i] === ';D'||arr[i] === ';~)'||arr[i] === ':~D'||arr[i] === ';-)'){
+        result += 1;
+      }
+    }
+    return result;
+  }
+
+}
+
+
+function alphabetPosition(text) {
+  const myRegex = /[a-z]+/g;
+  text = text.toLowerCase().match(myRegex);
+  if(!text){
+    return ""
+  }
+  text = text.join("");
+  const result = [];
+  const myA = {
+    a:1,b:2,c:3,d:4,e:5,f:6,g:7,h:8,i:9,j:10,k:11,l:12,m:13,n:14,o:15,p:16,q:17,r:18,s:19,t:20,u:21,v:22,w:23,x:24,y:25,z:26 
+  }
+  
+  for(let i = 0; i < text.length; i++){
+    result.push(myA[text[i]])
+  }
+  return result.join(" ");
+}
+
+String.prototype.toJadenCase = function () {
+  const str = this.toLowerCase().split(' ');
+  for(let i = 0; i < str.length; i++){
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].substring(1);
+  }
+  return str.join(' ');
+};
+
+function duplicateCount(text){
+  if(text === ""){
+    return 0;
+  }else{
+   const myText = text.toLowerCase().split("");
+   const countItems = {};
+    for (const item of myText) {
+      countItems[item] = countItems[item] ? countItems[item] + 1 : 1;
+  }
+   const result = Object.keys(countItems).filter((item) => countItems[item] > 1);
+    return result.length;
+  }
+  
+  }
+
+  function getMiddle(s) {
+    if (s.length % 2 == 1) {
+      return s.substring((s.length / 2),(s.length / 2)+1) 
+    } else if (s.length % 2 == 0) {
+        return s.substring((s.length / 2)-1, (s.length / 2)+1)
+    }
+  }
+  
+
+  function validatePIN (pin) {
+    const myRegex = /^(\d{4}|\d{6})$/;
+    return myRegex.test(pin);
+      
+    
+  }
