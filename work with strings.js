@@ -556,3 +556,117 @@ function makeList(arr) {
 
   return failureItems;
 }
+
+function capitalize(s){
+  let first = '';
+  let second = '';
+  s = s.split('');
+  
+  for(let i = 0; i < s.length; i++){
+    if(i%2==0){
+      first += s[i].toLowerCase();
+    }else{
+      first += s[i].toUpperCase()
+    }
+  }
+  
+  
+  for(let i = 0; i < s.length; i++){
+    if(i%2 !== 0){
+      second += s[i].toLowerCase();
+    }else{
+      second += s[i].toUpperCase()
+    }
+  }
+  
+  
+  return [second , first]
+};
+
+function inAscOrder(arr) {
+  
+  return arr.toString() == arr.sort((a,b)=>a-b).toString()
+}
+
+function solution(digits){
+  let result = 0;
+  digits = digits.split('');
+  for(let i = 0; i < digits.length; i++){
+    if(Number(digits.slice(i,i+5).join('')) > result )
+      result = Number(digits.slice(i,i+5).join(''))
+  }
+  
+  return result
+}
+
+function solve(s){
+  let low = 0;
+  let upp = 0;
+  const myR = /[a-z]/;
+  s = s.split('');
+  for(let i = 0; i < s.length; i++){
+    if(myR.test(s[i])){
+      low += 1;
+    } else {
+      upp += 1
+    }
+  }
+  
+  if(low == upp || low > upp){
+    return s.join('').toLowerCase();
+  }else {
+    return s.join('').toUpperCase();
+  }
+  
+  
+}
+
+function minValue(values){
+  return Number([...new Set(values)].sort((a,b)=>a-b).join(''))
+}
+function sumDigits(number) {
+  return (number+'').match(/\d/g).reduce((acc,el)=> acc + Number(el),0)
+}
+
+function maxMultiple(divisor, bound){
+  
+  for(let i = bound; i > 1; i--){
+    if(i%divisor == 0){
+      return i
+    }
+  }
+}
+
+function reverseLetter(str) {
+  return str.match(/[a-zA-Z]/g).reverse().join('')
+}
+
+
+function smallEnough(a, limit){
+  return !a.some(el => el > limit)
+}
+
+function twoOldestAges(ages){
+  return ages.sort((a,b)=>a-b).slice(-2)
+}
+
+function nbDig(n, d) {
+  const myR = new RegExp(d,'g');
+  let count = 0;
+  for(let i = 0; i <= n; i++){
+    if(myR.test(Math.pow(i,2)+'')){      
+      count += (Math.pow(i,2)+'').match(myR).length;
+    }
+  }
+return count
+}
+
+function calculateYears(principal, interest, tax, desired) {
+  let years = 0;
+  while(principal < desired){
+    let first = principal * interest;
+    principal += first - (first*tax)
+    years++
+  }
+    return years
+}
