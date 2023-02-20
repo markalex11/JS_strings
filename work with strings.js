@@ -443,3 +443,116 @@ function duplicateCount(text){
       
     
   }
+
+  function areYouPlayingBanjo(name) {
+    name = name.split("");
+    if(name[0] === "r" || name[0] ==="R"){
+      return name.join("") + " plays banjo";
+    } else {
+      return name.join("") + " does not play banjo";
+    }
+    
+    
+  }
+
+  function abbrevName(name){
+    const myRegex = /\./
+    if(myRegex.test(name)){
+      return name.toUpperCase();
+    } else {
+    name = name.split(" ");
+    return name[0][0].toUpperCase() + "." + name[1][0].toUpperCase();
+    }
+  }
+
+  function solution(str){
+    return str.split("").reverse().join("")
+  }
+
+  function findNeedle(haystack) {
+    return "found the needle at position " + haystack.indexOf("needle");
+  }
+
+  function greet (name, owner) {
+    if(name == owner){
+      return 'Hello boss';
+    } else {
+      return 'Hello guest';
+    }
+  }
+
+  function repeatStr (n, s) {
+    let result = "";
+    for(let i = 0; i < n; i++){
+      result += s;
+    }
+    return result;
+  }
+
+  function doReverse(p1) {
+    return p1.split("").reverse().join("")
+}
+function someFunction(p1, p2, p3) {
+    p1 = doReverse(p1);
+    p2 = ['1', '2', '3'];
+    p3.push('9999');
+}
+let a = 'xyz';
+let b = ['123', '567'];
+let c = ['abc', 'def'];
+
+
+function countToFive() {
+  let firstFive = "12345";
+  let len = firstFive.length;
+  // Змініть код лише під цим рядком
+  for (let i = 0; i < len; i++) {
+  // Змініть код лише над цим рядком
+    console.log(firstFive[i]);
+  }
+}
+
+function zeroArray(m, n) {
+  // Створіть 2-D масив із m-рядків m та n-стовпчиків нулів
+  let newArray = [];
+  for (let i = 0; i < m; i++) {
+    // Додайте m-ий рядок до newArray
+  let row = [];
+    for (let j = 0; j < n; j++) {
+      // Додає n нулів до поточного рядка, щоб створити стовпчики
+      row.push(0);
+    }
+    // Штовхає поточний рядок, який тепер містить n нулів, до масиву
+    newArray.push(row);
+  }
+  return newArray;
+}
+
+
+function loopy() {
+  while(true) {
+    console.log("Hello, world!");
+  }
+}
+
+
+function checkScope() {
+  const i = 'function scope';
+  if (true) {
+    let i = 'block scope';
+    console.log('Block scope i is: ', i);
+  }
+  console.log('Function scope i is: ', i);
+  return i;
+}
+
+function makeList(arr) {
+  // Змініть код лише під цим рядком
+  const failureItems = [];
+  for (let i = 0; i < arr.length; i++) {
+    failureItems.push(`<li class="text-warning">${arr[i]}</li>`)
+  }
+  // Змініть код лише над цим рядком
+
+  return failureItems;
+}
