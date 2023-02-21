@@ -670,3 +670,121 @@ function calculateYears(principal, interest, tax, desired) {
   }
     return years
 }
+
+function findOutlier(integers){
+  const f = integers.filter(el=> el%2==0);
+  const s = integers.filter(el=> el%2!==0);
+  if(f.length<s.length){
+    return f[0]
+  }else{
+    return s[0]
+  }
+}
+
+function mostFrequentItemCount(collection) {
+  if(!collection.length){
+    return 0
+  }
+  const count =  collection.reduce((acc,el)=>{
+                    acc[el]? acc[el] += 1: acc[el] = 1;
+                    return acc
+  },{})
+  return Math.max(...Object.values(count))
+}
+
+function likes(names) {
+  if(!names.length){
+    return "no one likes this"
+  }else if(names.length === 1){
+    return  names[0] + ' likes this'
+  }else if(names.length === 2){
+    return names[0] + ' and ' + names[1] + ' like this'
+  }else if(names.length === 3){
+    return names[0] + ', ' + names[1] + ' and ' + names[2] + ' like this'
+  }else {
+    return names[0] + ', ' + names[1] + ' and ' + (names.length-2) +' others like this'
+  }
+  
+}
+
+const forderedCount = function (text) {
+  let result = [];
+ 
+ for (let i = 0; i < text.length; i++) {
+   let count = 0;
+   for (let j = 0; j < result.length; j++) {
+     if (result[j][0] === text[i]) {
+       count++;
+     }
+   }
+   if (count === 0) {
+     for (let j = i; j < text.length; j++) {
+       if (text[j] === text[i]) {
+         count++;
+       }
+     }
+     result.push([text[i], count]);
+   }
+ }
+ return result;
+                   
+}
+
+var palindromeChainLength = function(n) {
+  n = n.toString();
+  const r = n.toString().split('').reverse().join('');
+  if (n == r){
+    return 0
+  } else {
+    return 1 + palindromeChainLength(Number(r)+Number(n))
+  }
+    
+};
+
+var SequenceSum = (function() {
+  function SequenceSum() {}
+
+  SequenceSum.showSequence = function(count) {
+     if(count == 0){
+       return '0=0'
+     }else if(count < 0){
+       return (count+'')+'<0'
+     } else {
+       return Array.from({length: count+1}, (_, i)=> i).join('+') + ' = ' + Array.from({length: count+1}, (_, i)=> i)
+         .reduce((acc,el)=> acc+el)
+     }
+  };
+
+  return SequenceSum;
+
+})();
+
+function minSum(arr) {
+  arr.sort((a,b)=>a-b);
+  const first = arr.slice(0,arr.length/2);
+  const second = arr.slice(-arr.length/2).reverse();
+  return first.map((el,i)=> el * second[i]).reduce((acc,el)=>acc+el)
+}
+
+function vertMirror(strng) {
+  return strng.split('\n').map(el=> el = el.split('').reverse().join('')).join('\n')
+}
+function horMirror(strng) {
+  return strng.split('\n').reverse().join('\n')
+}
+function oper(fct, s) {
+  return fct(s)
+}
+
+function fizzbuzz(n){
+  return Array.from({length: n}, (_, i)=> i+1).reduce((acc,el)=>{ 
+         acc.push((el%3==0 && el%5==0)?"FizzBuzz":
+                   el%3==0?'Fizz':
+                   el%5==0?'Buzz':
+                   el);
+                                               
+                   return acc
+    
+  },[])
+}
+
